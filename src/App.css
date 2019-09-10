@@ -1,7 +1,11 @@
-thead tr {
-  background-color: grey !important  ;
+thead {
+  background-color: goldenrod;
   color: white;
   font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: lightgoldenrodyellow;
 }
 
 td {
@@ -9,10 +13,3 @@ td {
   text-align: left;
 }
 
-tr:nth-child(odd) {
-  background-color: lightgoldenrodyellow;
-}
-
-tr:nth-child(even) {
-  background-color: goldenrod;
-}
