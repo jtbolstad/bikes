@@ -1,21 +1,13 @@
-
 # Bikes - a small app that consumes bysykkel-APIs.
 
 Prerequisites: yarn or npm must be installed.
 
-### Install dependencies by running yarn in the repository folder
+Install dependencies by running yarn or npm in the repository folder.
 
-In the project directory, you can run:
+In the project directory, run `yarn start` (or `npm start`).
 
-### `yarn start` (or `yarn start`) 
+This starts the app in the development mode, and should open it in a browser window.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-
-### Disclaimer
+If not, open [http://localhost:3000](http://localhost:3000) in a browser.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-Some features included by the Create React App scaffolding is not removed from, eg the service worker 
-and the single test file.
