@@ -6,39 +6,39 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        // Using CRA's proxy to avoid CORS issues (see package.json)
-        const apiEndpoints = [
-          "/oslobysykkel.no/station_information.json",
-          "/oslobysykkel.no/station_status.json"
-        ];
+      // Using CRA's proxy to avoid CORS issues (see package.json)
+      const apiEndpoints = [
+        "/oslobysykkel.no/station_information.json",
+        "/oslobysykkel.no/station_status.json"
+      ];
 
-        const headers = {
-          // Identifying header ref API readme
-          headers: {
-            "client-name": "jt-bikeapp"
+      const options = {
+        // Identifying header ref API readme
+        headers: {
+          "client-name": "jtbolstad-bikes"
+        }
+      };
+
+      const [stations, status] = await Promise.all(
+        apiEndpoints.map(async url => {
+          let response = await fetch(url, options);
+
+          if (!response.ok || !response.json) {
+            console.log('response', response);
+            throw new Error(`${response.status} ${response.statusText}`);
           }
-        };
 
-        const handleFetchResponse = response =>
-          response.ok && response.json ? response.json() : null;
-
-        const [stations, status] = await Promise.all(
-          apiEndpoints.map(url =>
-            fetch(url, headers)
-              .then(handleFetchResponse)
-              .then(response => response.data.stations)
-          )
-        );
-        setData({ stations, status });
-      } catch (err) {
-        console.log("Error:", err);
-      }
+          let responseJson = await response.json();
+          return responseJson.data && responseJson.data.stations ? responseJson.data.stations : {};  
+        })
+      );
+      setData({ stations, status });
     }
     fetchData();
   }, []);
 
   const Row = ({ id }) => {
+    // Could use a map/object with id as keys for faster lookups
     const station = data.stations.find(station => station.station_id === id);
     const status = data.status.find(status => status.station_id === id);
 
@@ -59,6 +59,10 @@ function App() {
     );
   };
 
+  const dataRows = data.stations.map(station => (
+    <Row key={station.station_id} id={station.station_id}></Row>
+  ));
+
   const dataTable = (
     <table>
       <thead>
@@ -70,9 +74,7 @@ function App() {
         </tr>
       </thead>
       <tbody>
-        {data.stations.map(station => (
-          <Row key={station.station_id} id={station.station_id}></Row>
-        ))}
+      {dataRows}
       </tbody>
     </table>
   );
