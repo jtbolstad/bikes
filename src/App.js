@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState({ stations: [], status: [] });
+  const [stationsWithStatus, setData] = useState(new Map());
 
   useEffect(() => {
     async function fetchData() {
-      // Using CRA's proxy to avoid CORS issues (see package.json)
+      // Using CRA's proxy to avoid CORS (see package.json)
       const apiEndpoints = [
         "/oslobysykkel.no/station_information.json",
         "/oslobysykkel.no/station_status.json"
@@ -32,21 +32,29 @@ function App() {
           return responseJson.data && responseJson.data.stations ? responseJson.data.stations : {};  
         })
       );
-      setData({ stations, status });
+
+      const stationsWithStatus = new Map();
+      stations.forEach(station => {
+        stationsWithStatus.set(
+          station.station_id, 
+          {
+            ...station,
+            ...status.find(status => station.station_id === status.station_id)
+          },
+        )
+      })
+      setData(stationsWithStatus);
     }
     fetchData();
   }, []);
 
   const Row = ({ id }) => {
-    // Could use a map/object with id as keys for faster lookups
-    const station = data.stations.find(station => station.station_id === id);
-    const status = data.status.find(status => status.station_id === id);
-
+    const station = stationsWithStatus.get(id);
     return (
       <tr>
         <td>{station.name}</td>
-        <td>{status.num_bikes_available}</td>
-        <td>{status.num_docks_available}</td>
+        <td>{station.num_bikes_available}</td>
+        <td>{station.num_docks_available}</td>
         <td>
           {/* Just adding a map link for my own interest/curiosity */}
           <a
@@ -59,8 +67,8 @@ function App() {
     );
   };
 
-  const dataRows = data.stations.map(station => (
-    <Row key={station.station_id} id={station.station_id}></Row>
+  const dataRows = [...stationsWithStatus.keys()].map(id => (
+    <Row key={id} id={id}></Row>
   ));
 
   const dataTable = (
