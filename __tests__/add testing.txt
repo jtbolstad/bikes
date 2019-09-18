@@ -1,0 +1,9 @@
+
+Unit test:          fetchData w/mock
+Integration test:   Jest
+E2E-test:           Cypress
+Majestic?
+
+Reading:
+https://create-react-app.dev/docs/running-tests
+https://medium.com/@rishabhsrao/mocking-and-testing-fetch-with-jest-c4d670e2e167

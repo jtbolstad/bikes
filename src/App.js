@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Kart from "./Kart.js";
 
-function App() {
+const App = () => {
   const [stationsWithStatus, setData] = useState(new Map());
+  const [updateTime, setUpdateTime] = useState(new Date());
 
   async function fetchData() {
     // Using CRA's proxy to avoid CORS (see package.json)
@@ -41,11 +43,12 @@ function App() {
       });
     });
     setData(stationsWithStatus);
+    setUpdateTime(new Date());
   }
 
   useEffect(() => {
     fetchData();
-    const inter = setInterval(fetchData, 1000 * 60 * 10); // Updates every 10 minutes
+    const inter = setInterval(fetchData, 1000 * 60 * 5); // Updates every 5 minutes
     return () => clearInterval(inter);
   }, []);
 
@@ -78,8 +81,14 @@ function App() {
       <tbody>{dataTableRows}</tbody>
     </table>
   );
+  console.log(updateTime);
 
-  return <div className="App">{dataTable}</div>;
-}
+  return (
+    <div className="App">
+      <div>Oppdatert kl {updateTime.toTimeString().substr(0,5)}</div>
+      <Kart style={{marginTop: '20px'}} stationsWithStatus={stationsWithStatus} />
+    </div>
+  );
+};
 
 export default App;
