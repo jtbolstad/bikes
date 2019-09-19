@@ -5,7 +5,7 @@ const BikeMap = ({ stationsWithStatus, google }) => {
   // Limit map view to stations
   var bounds = new google.maps.LatLngBounds();
 
-  const stations = [...stationsWithStatus.values()].map(
+  const stations = Object.values(stationsWithStatus).map(
     ({ name, lat, lon, num_bikes_available, num_docks_available }) => ({
       name,
       lat,
