@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cypress": "^3.4.1",
+    "global": "^4.4.0",
     "google-maps-react": "^2.0.2",
     "leaflet-map": "^0.2.1",
+    "majestic": "^1.6.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-leaflet": "^2.4.0",
@@ -14,10 +17,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "cy": true
+    }
   },
   "browserslist": {
     "production": [

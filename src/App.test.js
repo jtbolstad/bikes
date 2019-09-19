@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "../src/App.ja";
-import { italic } from "ansi-colors";
+import App from "./App.js";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
