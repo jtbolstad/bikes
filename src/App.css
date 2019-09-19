@@ -1,63 +1,16 @@
-/* .App {
-  width: 100vw;
-  height: 100vh;
-  padding: 3em;
-}
-
-.Mapp {
-  width: 80vw;
-  height: 80vh;
-} */
-.oppdatert {
+.info-text {
   position: fixed;
   bottom: 0;
   left: 50%;
   background: white;
   transform: translateX(-50%);
   font-size: 28px;
+  font-weight: 800;
   padding: 10px;
 }
 
-.oppdatert div {
+.info-text div {
   padding: 6px;
   font-size: 14px;
-  text-align: center;
-}
-
-
-table {
-  margin: 2em auto;
-}
-
-thead {
-  background-color: goldenrod;
-  color: white;
-  font-weight: bold;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: lightgoldenrodyellow;
-}
-
-td {
-  padding: 0.75em;
-  text-align: left;
-  width: 120px;
-}
-
-td:nth-child(1) {
-  width: 400px;
-}
-
-td:nth-child(2) {
-  text-align: center;
-}
-
-td:nth-child(3) {
-  text-align: center;
-}
-
-td:nth-child(4) {
-  width: 50px;
   text-align: center;
 }
