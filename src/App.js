@@ -84,9 +84,12 @@ const App = () => {
   console.log(updateTime);
 
   return (
-    <div className="App">
-      <div>Oppdatert kl {updateTime.toTimeString().substr(0,5)}</div>
+    <div className="app">
       <Kart style={{marginTop: '20px'}} stationsWithStatus={stationsWithStatus} />
+      <div className="oppdatert">Oslo Bysykkel: Ledige sykler og låser. 
+        Oppdatert kl {updateTime.toTimeString().substr(0,5)}
+        <div>Hold markøren over stasjonene for å se hvor mange sykler og låser som er ledige.</div>
+      </div>
     </div>
   );
 };

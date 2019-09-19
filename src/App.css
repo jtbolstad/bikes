@@ -1,3 +1,30 @@
+/* .App {
+  width: 100vw;
+  height: 100vh;
+  padding: 3em;
+}
+
+.Mapp {
+  width: 80vw;
+  height: 80vh;
+} */
+.oppdatert {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  background: white;
+  transform: translateX(-50%);
+  font-size: 28px;
+  padding: 10px;
+}
+
+.oppdatert div {
+  padding: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+
 table {
   margin: 2em auto;
 }
