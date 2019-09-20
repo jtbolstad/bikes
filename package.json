@@ -17,10 +17,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "cypress": "cypress open",
-    "cypress:run": "cypress run"
+    "test": "majestic",
+    "test:cli": "react-scripts test",
+    "test:cypress": "cypress run",
+    "test:cypress:gui": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app",

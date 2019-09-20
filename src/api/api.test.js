@@ -1,46 +1,30 @@
 import fetchMock from 'fetch-mock';
-import { fetchData } from './';
-import config from '../config.js';
-
-const responseBody = {
-	data: {
-		stations: [{station_id: 1, name:'a', lon:1, lat: 2}],
-		status: [[{station_id: 1, num_bikes_available: 1, num_docks_available: 1}]]
-	}
-};
+import fetchData from './fetchData.js';
 
 describe('Merge stations and status responses', () => {
 	it('can fetch data from two endpoints and merge them', async () => {
 
-		fetchMock.get('*', {
-			body: JSON.stringify(responseBody),
-			ok: true,
-			status: 200,
-			statusText: 'OK',
-		})
-		const response = await fetchData(config.apiEndpoints);
-		const result = await response.json();
-		console.log('result', result);
+		const responseStations = { data: {stations: [{station_id: 1, name:'a', lon:1, lat: 2}]}};
+		const responseStatus = {data: {stations: [{station_id: 1, num_bikes_available: 1, num_docks_available: 1}]}};
+		fetchMock.mock('/stations', JSON.stringify(responseStations));
+		fetchMock.mock('/status', JSON.stringify(responseStatus));
+
+		const response = await fetchData(['/stations', '/status']);
+		const expected = {1:{station_id: 1, name:'a', lon:1, lat: 2, num_bikes_available: 1, num_docks_available: 1}};
+		
 		expect(fetchMock.called()).toBe(true);
+		expect(fetchMock.calls().length).toBe(2);
+		expect (response).toEqual(expected);
+		
 		fetchMock.restore();
 	});
 
 	it('can fail if response fails', async () => {
-
-		// https://codereviewvideos.com/course/react-redux-and-redux-saga-with-symfony-3/video/testing-javascript-s-fetch-with-jest-unhappy-paths
-
-		fetchMock.get('http://bad.url', {
-			body: '',
-			ok: false,
-			status: 500,
-			statusText: 'Internal Server Error',
+		fetchMock.mock('/badUrl', {
+			status: 503,
+			throws: new Error('Failed to fetch'),
+			ok: false
 		})
-		const data = await fetchData('http://bad.url');
-		// console.log('data', data);
-		// console.log('fetchMock.called', fetchMock.called());
-		const response = await fetchData(config.apiEndpoints);
-		const result = await response.json();
-		expect(result).toThrow();
-		fetchMock.restore();
+		await expect(fetchData(['/badUrl', '/badUrl'])).rejects.toEqual(Error('Failed to fetch'));
 	});
 })
