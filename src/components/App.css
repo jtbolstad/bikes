@@ -4,13 +4,12 @@
   left: 50%;
   background: white;
   transform: translateX(-50%);
-  font-size: 28px;
+  font-size: calc(16px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 800;
   padding: 10px;
 }
 
 .info-text div {
   padding: 6px;
-  font-size: 14px;
-  text-align: center;
+  font-size: calc(9px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }

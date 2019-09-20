@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock';
 import fetchData from './fetchData.js';
 
-describe('Merge stations and status responses', () => {
+describe('fetchData', () => {
 	it('can fetch data from two endpoints and merge them', async () => {
 
 		const responseStations = { data: {stations: [{station_id: 1, name:'a', lon:1, lat: 2}]}};
