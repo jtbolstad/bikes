@@ -20,6 +20,7 @@
     "test": "majestic",
     "test:cli": "react-scripts test",
     "test:cypress": "cypress run",
+    "test:cypress:chrome": "cypress run --browser=chrome",
     "test:cypress:gui": "cypress open"
   },
   "eslintConfig": {
