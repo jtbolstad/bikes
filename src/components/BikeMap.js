@@ -1,6 +1,6 @@
 import React from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-import config from './config.js';
+import config from '../config.js';
 
 const BikeMap = ({ stationsWithStatus, google }) => {
   // Limit map view to stations
