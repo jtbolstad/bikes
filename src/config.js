@@ -1,4 +1,5 @@
 const config = {
+    googleMapsApiKey: "add key here",
     baseurl: 'http://localhost:3000',
     // Using a local proxy to avoid CORS (see package.json)
     apiEndpoints: [
@@ -10,7 +11,7 @@ const config = {
             // Identifying header ref API info
             "client-name": "jtbolstad-bikes"
         }
-    }
+    },
 };
 
 export default config;

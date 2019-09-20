@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "cypress": "^3.4.1",
-    "fetch-mock": "^7.3.9",
     "global": "^4.4.0",
     "google-maps-react": "^2.0.2",
-    "leaflet-map": "^0.2.1",
-    "majestic": "^1.6.0",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-leaflet": "^2.4.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "cypress": "^3.4.1",
+    "fetch-mock": "^7.3.9",
+    "majestic": "^1.6.0",
     "react-scripts": "3.1.1"
   },
   "scripts": {

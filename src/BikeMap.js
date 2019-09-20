@@ -1,5 +1,6 @@
 import React from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import config from './config.js';
 
 const BikeMap = ({ stationsWithStatus, google }) => {
   // Limit map view to stations
@@ -49,5 +50,5 @@ export default GoogleApiWrapper({
   // In a production app, this api key should be set in env. 
   // Maybe set env apikey when running .
   // https://www.rockyourcode.com/secret-keys-in-react 
-  apiKey: "AIzaSyC2Z0xQIg8y3Nv_qtgb1yRGPN3kSjHfVQ4"
+  apiKey: config.googleMapsApiKey
 })(BikeMap);
